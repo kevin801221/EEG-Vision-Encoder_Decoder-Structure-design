@@ -113,19 +113,6 @@ jobs:
         docker push username/eeg-vision-decoder:${{ github.ref_name }}
 ```
 
-## README.md 內容
-
-```markdown
-# EEG Vision Decoder
-
-基於深度學習的腦電波視覺解碼系統，能夠從EEG信號重建視覺刺激。
-
-## 功能特點
-
-- EEG信號編碼（ATM架構）
-- 零樣本圖像分類
-- 圖像檢索
-- 視覺重建生成
 
 ## 快速開始
 
@@ -133,7 +120,7 @@ jobs:
 
 ```bash
 # 克隆項目
-git clone https://github.com/username/eeg-vision-decoder.git
+git clone https://github.com/kevin1221/eeg-vision-decoder.git
 cd eeg-vision-decoder
 
 # 創建虛擬環境
@@ -212,7 +199,7 @@ MIT License
 
 ## 聯繫方式
 
-- 郵箱：your.email@example.com
+- 郵箱：kilong31442@gmaile.com
 - Issues: GitHub Issues 頁面
 ```
 
@@ -249,8 +236,3 @@ scheduler:
   T_max: 100
   eta_min: 0.00001
 ```
-
-您需要特別了解某個部分的詳細內容嗎？比如：
-- CI/CD 配置的具體設置？
-- 某個配置文件的詳細參數？
-- 代碼組織的具體實現？
