@@ -1,6 +1,83 @@
 # EEG-Vision-Encoder_Decoder-Structure-design
 ![image](https://github.com/user-attachments/assets/476eb377-45b4-4f25-b553-af4b8ae4e47c)
 
+ATM 提取的高質量初始特徵主要包含以下幾個方面：
+
+1. **空間特徵**：
+   - 腦區電極位置訊息
+   - 不同腦區活動模式
+   - 空間相關性分析
+   
+2. **時序特徵**：
+   - 腦電波形變化
+   - 時間序列模式
+   - 時間窗口內的動態特徵
+
+具體提取過程：
+
+1. **嵌入層處理**：
+```python
+# 輸入 EEG 數據格式
+eeg_data = [channels, timestamps]  # 例如 [64, 1000]
+
+# 位置編碼
+position_encoding = sinusoidal_position_encoding(channels)
+embedded_data = embedding_layer(eeg_data) + position_encoding
+```
+
+2. **通道注意力機制**：
+```python
+# 處理不同通道間的關係
+channel_attention = transformer_encoder(embedded_data)
+# 輸出：增強了重要通道的信息
+```
+
+3. **時空特徵提取**：
+```python
+# 空間卷積
+spatial_features = spatial_conv(channel_attention)
+# 時間卷積
+temporal_features = temporal_conv(channel_attention)
+```
+
+提取的特徵質量體現在：
+
+1. **多維度信息**：
+   - 捕獲空間分布
+   - 保留時序變化
+   - 記錄通道關係
+
+2. **關鍵特征**：
+   - 視覺刺激相關的腦電特徵
+   - 不同腦區的活動模式
+   - 時空相關性
+
+3. **可解釋性**：
+   - 可以追踪重要腦區
+   - 可以分析時間窗口
+   - 可以評估通道貢獻
+
+ATM 提取的高質量特徵使得後續處理更有效：
+
+1. **對 CLIP 特徵提取**：
+   - 提供清晰的視覺語義訊息
+   - 幫助對齊視覺概念
+
+2. **對擴散模型**：
+   - 提供可靠的先驗
+   - 指導圖像生成
+
+3. **對 VAE 解碼**：
+   - 提供細節特徵
+   - 幫助重建視覺細節
+
+這些特徵的重要性在於：
+- 保留了完整的腦電訊息
+- 降低了噪聲影響
+- 提高了後續處理效果
+- 增強了模型的泛化能力
+
+需要我對某個具體的特徵提取環節做更詳細的解釋嗎？
 ![image](https://github.com/user-attachments/assets/726d9b9f-1d17-488e-ab13-f1efb5383618)
 
 # EEG 視覺解碼與重建框架
