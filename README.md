@@ -1,6 +1,48 @@
 # EEG-Vision-Encoder_Decoder-Structure-design
 ![image](https://github.com/user-attachments/assets/476eb377-45b4-4f25-b553-af4b8ae4e47c)
+“ATMS_retrieval.py” -> 提供腳本以學習 EEG 編碼器的訓練策略並在訓練期間進行驗證。請修改您的數據集路徑並運行：
+cd Retrieval/
+python ATMS_retrieval.py --logger True --gpu cuda:0  --output_dir ./outputs/contrast
+也提供 joint subject training 的腳本，旨在共同訓練所有科目並在特定科目上進行測試：
+cd Retrieval/
+python ATMS_retrieval_joint_train.py --joint_train --sub sub-01 True --logger True --gpu cuda:0  --output_dir ./outputs/contrast
+# Train and generate eeg features in Subject 8
+cd Generation/
+python ATMS_reconstruction.py --insubject True --subjects sub-08 --logger True \
+--gpu cuda:0  --output_dir ./outputs/contrast
+cd Generation/
 
+# step 1: train vae encoder and then generate low level images
+train_vae_latent_512_low_level_no_average.py
+
+# step 2: load low level images and then reconstruct them
+1x1024_reconstruct_sdxl.ipynb
+提供結合 with the semantic level pipeline 的字幕生成腳本。
+
+cd Generation/
+
+# step 1: train feature adapter
+image_adapter.ipynb
+
+# step 2: get caption from eeg latent
+GIT_caption_batch.ipynb
+
+# step 3: load text prompt and then reconstruct images
+1x1024_reconstruct_sdxl.ipynb
+評估重建圖像的質量，請在筆記本中修改重建圖像和原始刺激圖像的路徑，然後運行：
+
+#compute metrics, cited from MindEye
+Reconstruction_Metrics_ATM.ipynb
+[
+EEG 預處理 (EEG-preprocessing):
+- 主要處理原始EEG數據,包括:
+- 通道選擇
+- 時間分段(Epoching) 
+- 頻率下採樣
+- 基線校正
+- 多變量噪聲正規化(MVNN)
+- 數據排序和重塑
+]
 ATM 提取的高質量初始特徵主要包含以下幾個方面：
 
 1. **空間特徵**：
@@ -76,7 +118,7 @@ ATM 提取的高質量特徵使得後續處理更有效：
 - 降低了噪聲影響
 - 提高了後續處理效果
 - 增強了模型的泛化能力
-
+ATMS_retrieval_joint_train.py
 ![image](https://github.com/user-attachments/assets/726d9b9f-1d17-488e-ab13-f1efb5383618)
 
 # EEG 視覺解碼與重建框架
