@@ -77,7 +77,6 @@ ATM 提取的高質量特徵使得後續處理更有效：
 - 提高了後續處理效果
 - 增強了模型的泛化能力
 
-需要我對某個具體的特徵提取環節做更詳細的解釋嗎？
 ![image](https://github.com/user-attachments/assets/726d9b9f-1d17-488e-ab13-f1efb5383618)
 
 # EEG 視覺解碼與重建框架
