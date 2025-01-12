@@ -1,4 +1,6 @@
 # EEG-Vision-Encoder_Decoder-Structure-design
+![image](https://github.com/user-attachments/assets/476eb377-45b4-4f25-b553-af4b8ae4e47c)
+
 ![image](https://github.com/user-attachments/assets/726d9b9f-1d17-488e-ab13-f1efb5383618)
 
 # EEG 視覺解碼與重建框架
